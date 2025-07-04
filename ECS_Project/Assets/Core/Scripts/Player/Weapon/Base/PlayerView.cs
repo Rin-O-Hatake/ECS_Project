@@ -1,7 +1,8 @@
+using Experimentation.ECS_Project.Scripts.Player.Weapon;
 using Leopotam.Ecs;
 using UnityEngine;
 
-namespace Experimentation.ECS_Project.Scripts.Player.Weapon
+namespace Core.Scripts.Player.Weapon.Base
 {
     public class PlayerView : MonoBehaviour
     {

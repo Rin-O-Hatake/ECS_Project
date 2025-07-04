@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace Experimentation.ECS_Project.Scripts.Enemy
+namespace Core.Scripts.Enemy
 {
     public struct Enemy
     {
@@ -11,6 +11,6 @@ namespace Experimentation.ECS_Project.Scripts.Enemy
         public float meleeAttackDistance;
         public float triggerDistance;
         public float meleeAttackInterval;
-        public int damage;    
+        public int damage;  
     }
 }

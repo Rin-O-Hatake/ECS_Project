@@ -1,15 +1,16 @@
-using Experimentation.ECS_Project.Scripts.AllData.RunTimeData;
+using Core.Scripts.AllData.RunTimeData;
+using Experimentation.ECS_Project.Scripts.UI.Pause;
 using Leopotam.Ecs;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Experimentation.ECS_Project.Scripts.UI.Pause
+namespace Core.Scripts.UI.Pause
 {
     public class PauseSystem : IEcsRunSystem
     {
         private EcsFilter<PauseEvent> filter;
         private RuntimeData runtimeData;
-        private UI ui;
+        private Experimentation.ECS_Project.Scripts.UI.UI ui;
     
         public void Run()
         {

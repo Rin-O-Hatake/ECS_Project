@@ -1,18 +1,23 @@
+using Core.Scripts.AllData.RunTimeData;
 using Core.Scripts.AllData.StaticData;
+using Core.Scripts.Damage;
+using Core.Scripts.Player.Weapon.Base;
 using Experimentation.ECS_Project.Scripts.AllData.SceneData;
+using Experimentation.ECS_Project.Scripts.Enemy;
 using Experimentation.ECS_Project.Scripts.Player.PlayerInput;
 using Experimentation.ECS_Project.Scripts.Player.Weapon;
 using Leopotam.Ecs;
 using UnityEngine;
 
-namespace Experimentation.ECS_Project.Scripts.Player.PlayerInit
+namespace Core.Scripts.Player.PlayerInit
 {
     public class PlayerInitSystem : IEcsInitSystem
     {
         private EcsWorld _ecsWorld;
         private StaticData _staticData;
         private SceneData _sceneData;
-        private UI.UI ui;
+        private Experimentation.ECS_Project.Scripts.UI.UI ui;
+        private RuntimeData _runtimeData;
 
         public void Init()
         {
@@ -20,17 +25,24 @@ namespace Experimentation.ECS_Project.Scripts.Player.PlayerInit
 
             EcsEntity playerEntity = _ecsWorld.NewEntity();
 
-            ref var player = ref playerEntity.Get<Player>();
+            ref var player = ref playerEntity.Get<Experimentation.ECS_Project.Scripts.Player.PlayerInit.Player>();
             ref var inputData = ref playerEntity.Get<PlayerInputData>();
             ref var hasWeapon = ref playerEntity.Get<HasWeapon>();
             ref var animatorRef = ref playerEntity.Get<AnimatorRef>();
+            ref var transformRef = ref playerEntity.Get<TransformRef>();
+            ref var healthPlayer = ref playerEntity.Get<Health>();
         
             GameObject playerGO = Object.Instantiate(_staticData.PlayerPrefab, _sceneData.playerSpawnPoint.position, Quaternion.identity);
             player.playerRigidbody = playerGO.GetComponent<Rigidbody>();
             player.playerSpeed = _staticData.PlayerSpeed;
             player.playerTransform = playerGO.transform;
             player.playerAnimator = playerGO.GetComponent<Animator>();
+            
+            healthPlayer.value = _staticData.Health;
             animatorRef.animator = player.playerAnimator;
+            transformRef.transform = playerGO.transform;
+            _runtimeData.PlayerEntity = playerEntity;
+            playerGO.GetComponent<PlayerView>().entity = playerEntity;
 
             #endregion
             
@@ -38,7 +50,7 @@ namespace Experimentation.ECS_Project.Scripts.Player.PlayerInit
 
             var weaponEntity = _ecsWorld.NewEntity();
             var weaponView = playerGO.GetComponentInChildren<WeaponSettings>();
-            ref var weapon = ref weaponEntity.Get<Weapon.Base.Weapon>();
+            ref var weapon = ref weaponEntity.Get<Experimentation.ECS_Project.Scripts.Player.Weapon.Base.Weapon>();
             weapon.owner = playerEntity;
             weapon.projectilePrefab = weaponView.ProjectilePrefab;
             weapon.projectileRadius = weaponView.ProjectileRadius;
@@ -50,8 +62,6 @@ namespace Experimentation.ECS_Project.Scripts.Player.PlayerInit
             weapon.maxInMagazine = weaponView.MaxInMagazine;
 
             hasWeapon.weapon = weaponEntity;
-            
-            playerGO.GetComponent<PlayerView>().entity = playerEntity;
 
             #endregion
             

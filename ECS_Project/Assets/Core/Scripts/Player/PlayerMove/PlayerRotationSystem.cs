@@ -1,4 +1,4 @@
-using Experimentation.ECS_Project.Scripts.AllData.RunTimeData;
+using Core.Scripts.AllData.RunTimeData;
 using Experimentation.ECS_Project.Scripts.AllData.SceneData;
 using Leopotam.Ecs;
 using UnityEngine;

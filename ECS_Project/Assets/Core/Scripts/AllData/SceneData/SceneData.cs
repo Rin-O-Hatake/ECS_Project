@@ -6,6 +6,6 @@ namespace Experimentation.ECS_Project.Scripts.AllData.SceneData
     public class SceneData : MonoBehaviour
     {
         public Transform playerSpawnPoint;
-        public Camera mainCamera;
+        public UnityEngine.Camera mainCamera;
     }
 }

@@ -1,9 +1,8 @@
-using Experimentation.ECS_Project.Scripts.Player.Weapon.Bullet;
+using Experimentation.ECS_Project.Scripts.Player.Weapon;
 using Leopotam.Ecs;
-using Unity.VisualScripting;
 using UnityEngine;
 
-namespace Experimentation.ECS_Project.Scripts.Player.Weapon
+namespace Core.Scripts.Player.Weapon.Bullet
 {
     public class ProjectileMoveSystem : IEcsRunSystem
     {
@@ -15,9 +14,9 @@ namespace Experimentation.ECS_Project.Scripts.Player.Weapon
             {
                 ref var projectile = ref filter.Get1(i);
             
-                var position = projectile.projectileGO.GameObject().transform.position;
+                var position = projectile.projectileGO.transform.position;
                 position += projectile.direction * projectile.speed * Time.deltaTime;
-                projectile.projectileGO.GameObject().transform.position = position;
+                projectile.projectileGO.transform.position = position;
             
                 var displacementSinceLastFrame = position - projectile.previousPos;
                 var hit = Physics.SphereCast(projectile.previousPos, projectile.radius,
@@ -29,7 +28,7 @@ namespace Experimentation.ECS_Project.Scripts.Player.Weapon
                     projectileHit.raycastHit = hitInfo;
                 }
 
-                projectile.previousPos = projectile.projectileGO.GameObject().transform.position;
+                projectile.previousPos = projectile.projectileGO.transform.position;
             }
         }
     }

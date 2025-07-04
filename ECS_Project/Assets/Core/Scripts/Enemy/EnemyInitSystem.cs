@@ -1,8 +1,10 @@
+using Core.Scripts.Damage;
+using Experimentation.ECS_Project.Scripts.Enemy;
 using Experimentation.ECS_Project.Scripts.Player.Weapon;
 using Leopotam.Ecs;
 using UnityEngine;
 
-namespace Experimentation.ECS_Project.Scripts.Enemy
+namespace Core.Scripts.Enemy
 {
     public class EnemyInitSystem : IEcsInitSystem
     {
@@ -20,16 +22,16 @@ namespace Experimentation.ECS_Project.Scripts.Enemy
                 ref var health = ref enemyEntity.Get<Health>();
 
                 enemyEntity.Get<Idle>();
-                enemyView.entity = enemyEntity;
+                enemyView.Entity = enemyEntity;
                 
-                health.value = enemyView.startHealth;
-                enemy.damage = enemyView.damage;
-                enemy.meleeAttackDistance = enemyView.meleeAttackDistance;
-                enemy.navMeshAgent = enemyView.navMeshAgent;
+                health.value = enemyView.StartHealth;
+                enemy.damage = enemyView.Damage;
+                enemy.meleeAttackDistance = enemyView.MeleeAttackDistance;
+                enemy.navMeshAgent = enemyView.NavMeshAgent;
                 enemy.transform = enemyView.transform;
-                enemy.meleeAttackInterval = enemyView.meleeAttackInterval;
-                enemy.triggerDistance = enemyView.triggerDistance;
-                animatorRef.animator = enemyView.animator;
+                enemy.meleeAttackInterval = enemyView.MeleeAttackInterval;
+                enemy.triggerDistance = enemyView.TriggerDistance;
+                animatorRef.animator = enemyView.Animator;
             }
         }
     }

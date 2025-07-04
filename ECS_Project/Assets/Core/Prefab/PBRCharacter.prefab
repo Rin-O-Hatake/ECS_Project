@@ -2291,11 +2291,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c05dc14948ee7a44fbdc24c11506ebb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _projectilePrefab: {fileID: 8513864785005989948, guid: c14b7c3fc09e14144802e758dca74b2b, type: 3}
+  _projectilePrefab: {fileID: 8513864785005989948, guid: c14b7c3fc09e14144802e758dca74b2b,
+    type: 3}
   _projectileSocket: {fileID: 6087400753398252548}
-  _projectileSpeed: 5
-  _projectileRadius: 1
-  _weaponDamage: 10
+  _projectileSpeed: 10
+  _projectileRadius: 2
+  _weaponDamage: 50
   _currentInMagazine: 30
   _maxInMagazine: 30
   _totalAmmo: 90

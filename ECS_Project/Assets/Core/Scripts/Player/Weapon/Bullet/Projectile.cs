@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-namespace Experimentation.ECS_Project.Scripts.Player.Weapon.Bullet
+namespace Core.Scripts.Player.Weapon.Bullet
 {
     public struct Projectile
     {
@@ -10,6 +10,6 @@ namespace Experimentation.ECS_Project.Scripts.Player.Weapon.Bullet
         public float radius;
         public float speed;
         public Vector3 previousPos;
-        public Object projectileGO;
+        public GameObject projectileGO;
     }
 }

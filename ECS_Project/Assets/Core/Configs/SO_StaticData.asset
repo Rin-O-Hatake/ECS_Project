@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2c27aaeda86a094bab287e090ecd51b, type: 3}
   m_Name: SO_StaticData
   m_EditorClassIdentifier: 
-  _playerPrefab: {fileID: 7324311353319300534, guid: 9e0bc0c50c2a9874abdd0d1189c632d6, type: 3}
+  _playerPrefab: {fileID: 7324311353319300534, guid: 9e0bc0c50c2a9874abdd0d1189c632d6,
+    type: 3}
   _playerSpeed: 15
+  _health: 100
   _smoothTime: 1
   _followOffset: {x: 0, y: 5, z: -10}

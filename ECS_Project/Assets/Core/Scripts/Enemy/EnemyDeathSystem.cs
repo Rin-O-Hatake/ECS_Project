@@ -1,7 +1,9 @@
+using Core.Scripts.Damage;
+using Experimentation.ECS_Project.Scripts.Enemy;
 using Experimentation.ECS_Project.Scripts.Player.Weapon;
 using Leopotam.Ecs;
 
-namespace Experimentation.ECS_Project.Scripts.Enemy
+namespace Core.Scripts.Enemy
 {
     public class EnemyDeathSystem : IEcsRunSystem
     {

@@ -1,13 +1,13 @@
-using Experimentation.ECS_Project.Scripts.Player.Weapon.Bullet;
+using Core.Scripts.Player.Weapon.Bullet;
+using Experimentation.ECS_Project.Scripts.Player.Weapon;
 using Leopotam.Ecs;
-using Unity.VisualScripting;
 using UnityEngine;
 
-namespace Experimentation.ECS_Project.Scripts.Player.Weapon
+namespace Core.Scripts.Player.Weapon.Reload
 {
     public class SpawnProjectileSystem : IEcsRunSystem
     {
-        private EcsFilter<Base.Weapon, SpawnProjectile> filter;
+        private EcsFilter<Experimentation.ECS_Project.Scripts.Player.Weapon.Base.Weapon, SpawnProjectile> filter;
         private EcsWorld ecsWorld;
     
         public void Run()
@@ -16,7 +16,7 @@ namespace Experimentation.ECS_Project.Scripts.Player.Weapon
             {
                 ref var weapon = ref filter.Get1(i);
             
-                var projectileGO = Object.Instantiate((Object)weapon.projectilePrefab, weapon.projectileSocket.position, Quaternion.identity);
+                var projectileGO = Object.Instantiate(weapon.projectilePrefab, weapon.projectileSocket.position, Quaternion.identity);
                 var projectileEntity = ecsWorld.NewEntity();
 
                 ref var projectile = ref projectileEntity.Get<Projectile>();
@@ -25,7 +25,7 @@ namespace Experimentation.ECS_Project.Scripts.Player.Weapon
                 projectile.direction = weapon.projectileSocket.forward;
                 projectile.radius = weapon.projectileRadius;
                 projectile.speed = weapon.projectileSpeed;
-                projectile.previousPos = projectileGO.GameObject().transform.position;
+                projectile.previousPos = projectileGO.transform.position;
                 projectile.projectileGO = projectileGO;
 
                 ref var entity = ref filter.GetEntity(i);

@@ -1,8 +1,11 @@
+using Core.Scripts.Damage;
+using Core.Scripts.Enemy;
 using Experimentation.ECS_Project.Scripts.Enemy;
+using Experimentation.ECS_Project.Scripts.Player.Weapon;
 using Leopotam.Ecs;
-using Unity.VisualScripting;
+using UnityEngine;
 
-namespace Experimentation.ECS_Project.Scripts.Player.Weapon.Bullet
+namespace Core.Scripts.Player.Weapon.Bullet
 {
     public class ProjectileHitSystem : IEcsRunSystem
     {
@@ -18,15 +21,15 @@ namespace Experimentation.ECS_Project.Scripts.Player.Weapon.Bullet
 
                 if (hit.raycastHit.collider.gameObject.TryGetComponent(out EnemyView enemyView))
                 {
-                    if (enemyView.entity.IsAlive())
+                    if (enemyView.Entity.IsAlive())
                     {
                         ref var e = ref ecsWorld.NewEntity().Get<DamageEvent>();
-                        e.Target = enemyView.entity;
+                        e.Target = enemyView.Entity;
                         e.Value = projectile.damage;
                     }
                 }
 
-                projectile.projectileGO.GameObject().SetActive(false);
+                projectile.projectileGO.SetActive(false);
                 filter.GetEntity(i).Destroy();
             }
         }

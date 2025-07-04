@@ -1,6 +1,6 @@
 using Leopotam.Ecs;
 
-namespace Experimentation.ECS_Project.Scripts.AllData.RunTimeData
+namespace Core.Scripts.AllData.RunTimeData
 {
     public class RuntimeData
     {

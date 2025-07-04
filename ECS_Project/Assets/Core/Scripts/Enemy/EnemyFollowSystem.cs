@@ -1,13 +1,18 @@
-using Experimentation.ECS_Project.Scripts.AllData.RunTimeData;
+using Core.Scripts.AllData.RunTimeData;
+using Core.Scripts.Base.Damage;
+using Core.Scripts.Base.Move;
+using Core.Scripts.Damage;
+using Experimentation.ECS_Project.Scripts.Enemy;
 using Experimentation.ECS_Project.Scripts.Player.Weapon;
 using Leopotam.Ecs;
 using UnityEngine;
 
-namespace Experimentation.ECS_Project.Scripts.Enemy
+namespace Core.Scripts.Enemy
 {
     public class EnemyFollowSystem : IEcsRunSystem
     {
         private EcsFilter<Enemy, Follow, AnimatorRef> followingEnemies;
+        private EcsFilter<Enemy, Follow, AttackMarker> attackingEnemies;
         private RuntimeData runtimeData;
         private EcsWorld ecsWorld;
         
@@ -35,14 +40,26 @@ namespace Experimentation.ECS_Project.Scripts.Enemy
                 enemy.transform.forward = direction;
 
                 if ((enemy.transform.position - transformRef.transform.position).sqrMagnitude <
-                    enemy.meleeAttackDistance * enemy.meleeAttackDistance && Time.time >= follow.NextAttackTime)
+                    enemy.meleeAttackDistance * enemy.meleeAttackDistance &&
+                    Time.time >= follow.NextAttackTime)
                 {
                     follow.NextAttackTime = Time.time + enemy.meleeAttackInterval;
                     animatorRef.animator.SetTrigger("Attack");
-                    ref var e = ref ecsWorld.NewEntity().Get<DamageEvent>();
-                    e.Target = follow.Target;
-                    e.Value = enemy.damage;
                 }
+            }
+            
+            foreach (var i in attackingEnemies)
+            {
+                ref var enemyAttack = ref attackingEnemies.Get1(i);
+                ref var followAttack = ref attackingEnemies.Get2(i);
+                
+                ref var entity = ref followingEnemies.GetEntity(i);
+                entity.Del<AttackMarker>();
+                
+                ref var e = ref ecsWorld.NewEntity().Get<DamageEvent>();
+                e.Target = followAttack.Target;
+                e.Value = enemyAttack.damage;
+                
             }
         }
     }

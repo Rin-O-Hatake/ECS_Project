@@ -1,8 +1,10 @@
-using Experimentation.ECS_Project.Scripts.AllData.RunTimeData;
+using Core.Scripts.AllData.RunTimeData;
+using Core.Scripts.Base.Move;
+using Experimentation.ECS_Project.Scripts.Enemy;
 using Experimentation.ECS_Project.Scripts.Player.Weapon;
 using Leopotam.Ecs;
 
-namespace Experimentation.ECS_Project.Scripts.Enemy
+namespace Core.Scripts.Enemy
 {
     public class EnemyIdleSystem : IEcsRunSystem
     {
@@ -14,7 +16,7 @@ namespace Experimentation.ECS_Project.Scripts.Enemy
             foreach (var i in calmEnemies)
             {
                 ref var enemy = ref calmEnemies.Get1(i);
-                ref var player = ref runtimeData.PlayerEntity.Get<Player.PlayerInit.Player>();
+                ref var player = ref runtimeData.PlayerEntity.Get<Experimentation.ECS_Project.Scripts.Player.PlayerInit.Player>();
                 ref var animatorRef = ref calmEnemies.Get2(i);
 
                 if ((enemy.transform.position - player.playerTransform.position).sqrMagnitude <= enemy.triggerDistance * enemy.triggerDistance)
