@@ -1,6 +1,6 @@
+using Core.Scripts.AllData.StaticData;
 using Experimentation.ECS_Project.Scripts.AllData.RunTimeData;
 using Experimentation.ECS_Project.Scripts.AllData.SceneData;
-using Experimentation.ECS_Project.Scripts.AllData.StaticData;
 using Experimentation.ECS_Project.Scripts.Enemy;
 using Experimentation.ECS_Project.Scripts.Player.Camera;
 using Experimentation.ECS_Project.Scripts.Player.PlayerAnimation;
@@ -14,9 +14,8 @@ using Experimentation.ECS_Project.Scripts.Player.Weapon.Reload;
 using Experimentation.ECS_Project.Scripts.UI.Pause;
 using Leopotam.Ecs;
 using UnityEngine;
-using Voody.UniLeo;
 
-namespace Experimentation.ECS_Project.Scripts
+namespace Core.Scripts
 {
     public sealed class EcsGameStartup : MonoBehaviour
     {
@@ -27,7 +26,7 @@ namespace Experimentation.ECS_Project.Scripts
         private EcsSystems _systems;
         private EcsSystems _fixedUpdateSystems;
         
-        public UI.UI ui;
+        public Experimentation.ECS_Project.Scripts.UI.UI ui;
 
         #region MonoBehavior
 

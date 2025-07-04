@@ -1,7 +1,7 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Experimentation.ECS_Project.Scripts.AllData.StaticData
+namespace Core.Scripts.AllData.StaticData
 {
     [CreateAssetMenu(fileName = "StaticData", menuName = "ECS/Scene Data", order = 55)]
     public class StaticData : ScriptableObject

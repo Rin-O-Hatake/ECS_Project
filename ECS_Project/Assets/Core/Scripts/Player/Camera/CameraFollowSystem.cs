@@ -1,5 +1,5 @@
+using Core.Scripts.AllData.StaticData;
 using Experimentation.ECS_Project.Scripts.AllData.SceneData;
-using Experimentation.ECS_Project.Scripts.AllData.StaticData;
 using Leopotam.Ecs;
 using UnityEngine;
 
