@@ -1,12 +1,17 @@
 using UnityEngine;
 
-namespace Experimentation.ECS_Project.Scripts.Player.PlayerInit
+namespace Core.Scripts.Player.PlayerInit
 {
     public struct Player
     {
-        public Rigidbody playerRigidbody;
+        public CharacterController CharacterController;
         public float playerSpeed;
         public Animator playerAnimator;
         public Transform playerTransform;
+
+        public GameObject CameraTarget;
+        public bool AnalogMovement;
+        public float SpeedChangeRate;
+        public float RotationSmoothTime;
     }
 }

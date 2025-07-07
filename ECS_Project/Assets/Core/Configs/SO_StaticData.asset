@@ -16,5 +16,7 @@ MonoBehaviour:
     type: 3}
   _playerSpeed: 15
   _health: 100
-  _smoothTime: 1
-  _followOffset: {x: 0, y: 5, z: -10}
+  _analogMovement: 0
+  _speedChangeRate: 10
+  _rotationSmoothTime: 0.12
+  rotationSpeed: 200

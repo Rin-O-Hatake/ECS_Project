@@ -1,10 +1,11 @@
 using UnityEngine;
 
-namespace Experimentation.ECS_Project.Scripts.Player.PlayerInput
+namespace Core.Scripts.Player.PlayerInput
 {
     public struct PlayerInputData
     {
-        public Vector3 moveInput;
+        public Vector2 moveInput;
         public bool shootInput;
+        public Vector2 lookInput;
     }
 }

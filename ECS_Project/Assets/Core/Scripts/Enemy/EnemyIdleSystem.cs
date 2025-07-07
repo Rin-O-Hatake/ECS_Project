@@ -16,7 +16,7 @@ namespace Core.Scripts.Enemy
             foreach (var i in calmEnemies)
             {
                 ref var enemy = ref calmEnemies.Get1(i);
-                ref var player = ref runtimeData.PlayerEntity.Get<Experimentation.ECS_Project.Scripts.Player.PlayerInit.Player>();
+                ref var player = ref runtimeData.PlayerEntity.Get<Player.PlayerInit.Player>();
                 ref var animatorRef = ref calmEnemies.Get2(i);
 
                 if ((enemy.transform.position - player.playerTransform.position).sqrMagnitude <= enemy.triggerDistance * enemy.triggerDistance)

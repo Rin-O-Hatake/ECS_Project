@@ -12,31 +12,24 @@ namespace Core.Scripts.AllData.StaticData
         [SerializeField] private GameObject _playerPrefab;
         [SerializeField] private float _playerSpeed;
         [SerializeField] private int _health;
+        [SerializeField] private bool _analogMovement;
+        [SerializeField] private float _speedChangeRate  = 10.0f;
+        [SerializeField, Range(0.0f, 0.3f)] private float _rotationSmoothTime  = 0.12f;
         
         [Title("Camera")]
-        [SerializeField] private float _smoothTime;
-        [SerializeField] private Vector3 _followOffset;
         
-        [SerializeField] private float distance = 5.0f;
-        [SerializeField] private float height = 2.0f;
         [SerializeField] private float rotationSpeed = 200.0f;
-        [SerializeField] private float heightDamping = 2.0f;
-        [SerializeField] private float rotationDamping = 3.0f;
+        
         
         #region Properties
 
         public GameObject PlayerPrefab => _playerPrefab;
         public float PlayerSpeed => _playerSpeed;
         public int Health => _health;
-        
-        public Vector3 FollowOffset => _followOffset;
-        public float SmoothTime => _smoothTime;
-        
-        public float Distance => distance;
-        public float Height => height;
         public float RotationSpeed => rotationSpeed;
-        public float HeightDamping => heightDamping;
-        public float RotationDamping => rotationDamping;
+        public bool AnalogMovement => _analogMovement;
+        public float SpeedChangeRate => _speedChangeRate;
+        public float RotationSmoothTime => _rotationSmoothTime;
 
         #endregion
 

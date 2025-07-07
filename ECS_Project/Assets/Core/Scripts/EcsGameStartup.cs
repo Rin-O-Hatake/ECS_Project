@@ -1,16 +1,17 @@
 using Core.Scripts.AllData.RunTimeData;
 using Core.Scripts.AllData.StaticData;
+using Core.Scripts.Base;
 using Core.Scripts.Camera;
 using Core.Scripts.Damage;
 using Core.Scripts.Enemy;
 using Core.Scripts.Player.PlayerInit;
+using Core.Scripts.Player.PlayerInput;
+using Core.Scripts.Player.PlayerMove;
 using Core.Scripts.Player.Weapon.Bullet;
 using Core.Scripts.Player.Weapon.Reload;
 using Core.Scripts.UI.Pause;
 using Experimentation.ECS_Project.Scripts.AllData.SceneData;
 using Experimentation.ECS_Project.Scripts.Player.PlayerAnimation;
-using Experimentation.ECS_Project.Scripts.Player.PlayerInput;
-using Experimentation.ECS_Project.Scripts.Player.PlayerMove;
 using Experimentation.ECS_Project.Scripts.Player.Weapon.Base;
 using Experimentation.ECS_Project.Scripts.Player.Weapon.Reload;
 using Experimentation.ECS_Project.Scripts.UI.Pause;
@@ -46,6 +47,7 @@ namespace Core.Scripts
             AddSystemsEnemy();
             AddSystemsWeapons();
             AddSystemsUI();
+            AddSystemsOtherSystems();
             
             _systems.Init();
             _fixedUpdateSystems.Init();
@@ -153,6 +155,16 @@ namespace Core.Scripts
                 .Add(new PauseSystem())
                 .Inject(_runtimeData)
                 .Inject(ui);
+        }
+
+        #endregion
+
+        #region Other
+
+        private void AddSystemsOtherSystems()
+        {
+            _systems
+                .Add(new CursorEnabledSystem());
         }
 
         #endregion

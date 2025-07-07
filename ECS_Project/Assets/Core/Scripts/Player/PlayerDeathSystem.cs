@@ -8,7 +8,7 @@ namespace Core.Scripts.Enemy
 {
     public class PlayerDeathSystem : IEcsRunSystem
     {
-        private EcsFilter<Experimentation.ECS_Project.Scripts.Player.PlayerInit.Player, DeathEvent, AnimatorRef> deadPlayers;
+        private EcsFilter<Player.PlayerInit.Player, DeathEvent, AnimatorRef> deadPlayers;
         private RuntimeData runtimeData;
         private Experimentation.ECS_Project.Scripts.UI.UI ui;
     

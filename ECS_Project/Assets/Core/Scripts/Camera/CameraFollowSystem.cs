@@ -1,4 +1,5 @@
 using Core.Scripts.AllData.StaticData;
+using Core.Scripts.Player.PlayerInput;
 using Experimentation.ECS_Project.Scripts.AllData.SceneData;
 using Leopotam.Ecs;
 using UnityEngine;
@@ -7,11 +8,15 @@ namespace Core.Scripts.Camera
 {
     public class CameraFollowSystem : IEcsRunSystem
     {
-        private EcsFilter<Experimentation.ECS_Project.Scripts.Player.PlayerInit.Player> filter;
+        private EcsFilter<Player.PlayerInit.Player, PlayerInputData> filter;
         private EcsFilter<Camera> cameraFilter;
         private SceneData sceneData;
         private StaticData staticData;
-        private Vector3 currentVelocity;
+        
+        private const float _threshold = 0.01f;
+        
+        private float _cinemachineTargetYaw;
+        private float _cinemachineTargetPitch;
 
         public void Run()
         {
@@ -19,37 +24,31 @@ namespace Core.Scripts.Camera
             {
                 foreach (var j in cameraFilter)
                 {
-                    ref var player = ref filter.Get1(i);
-                    Transform transformPlayer = player.playerTransform;
-                    
-                    ref var camera = ref cameraFilter.Get1(i);
-                    Transform transformCamera = camera.cameraTransform;
+                    ref var input = ref filter.Get2(i);
+                    ref var camera = ref cameraFilter.Get1(j);
                 
-                    var wantedRotationAngle = transformPlayer.eulerAngles.y;
-                    var wantedHeight =  transformPlayer.position.y + staticData.Height;
-                
-                    var currentRotationAngle = transformCamera.eulerAngles.y;
-                    var currentHeight = transformCamera.position.y;
-                
-                    currentRotationAngle = Mathf.LerpAngle(currentRotationAngle, wantedRotationAngle, staticData.RotationDamping * Time.deltaTime);
+                    if (input.lookInput.sqrMagnitude >= _threshold)
+                    {
+                        float deltaTimeMultiplier = 1.0f;
+            
+                        _cinemachineTargetYaw += input.lookInput.x * deltaTimeMultiplier;
+                        _cinemachineTargetPitch += input.lookInput.y * deltaTimeMultiplier;
+                    }
+            
+                    _cinemachineTargetYaw = ClampAngle(_cinemachineTargetYaw, float.MinValue, float.MaxValue);
+                    _cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, camera.BottomClamp, camera.TopClamp);
 
-                    currentHeight = Mathf.Lerp(currentHeight, wantedHeight, staticData.HeightDamping * Time.deltaTime);
-
-                    Quaternion currentRotation = Quaternion.Euler(0, currentRotationAngle, 0);
-
-                    transformCamera.position = transformPlayer.position;
-                    transformCamera.position -= currentRotation * Vector3.forward * staticData.Distance;
-
-                    transformCamera.position = new Vector3(transformCamera.position.x, currentHeight, transformCamera.position.z);
-
-                    transformCamera.LookAt(transformPlayer);
-                
-                
-                    // var currentPos = sceneData.mainCamera.transform.position;
-                    // currentPos = Vector3.SmoothDamp(currentPos, player.playerTransform.position + staticData.FollowOffset, ref currentVelocity, staticData.SmoothTime);
-                    // sceneData.mainCamera.transform.position = currentPos; 
+                    camera.CameraTarget.transform.rotation = Quaternion.Euler(_cinemachineTargetPitch + camera.CameraAngleOverride,
+                        _cinemachineTargetYaw, 0.0f);
                 }
             }
+        }
+        
+        private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
+        {
+            if (lfAngle < -360f) lfAngle += 360f;
+            if (lfAngle > 360f) lfAngle -= 360f;
+            return Mathf.Clamp(lfAngle, lfMin, lfMax);
         }
     }
 }

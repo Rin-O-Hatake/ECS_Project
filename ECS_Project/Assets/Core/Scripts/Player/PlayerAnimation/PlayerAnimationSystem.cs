@@ -1,4 +1,4 @@
-using Experimentation.ECS_Project.Scripts.Player.PlayerInput;
+using Core.Scripts.Player.PlayerInput;
 using Leopotam.Ecs;
 using UnityEngine;
 
@@ -6,7 +6,7 @@ namespace Experimentation.ECS_Project.Scripts.Player.PlayerAnimation
 {
     public class PlayerAnimationSystem : IEcsRunSystem
     {
-        private EcsFilter<PlayerInit.Player, PlayerInputData> filter;
+        private EcsFilter<Core.Scripts.Player.PlayerInit.Player, PlayerInputData> filter;
 
         public void Run()
         {

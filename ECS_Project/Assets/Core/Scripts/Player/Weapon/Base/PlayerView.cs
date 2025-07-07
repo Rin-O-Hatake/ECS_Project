@@ -6,7 +6,19 @@ namespace Core.Scripts.Player.Weapon.Base
 {
     public class PlayerView : MonoBehaviour
     {
+        #region Fields
+
+        [SerializeField] private GameObject _cameraTarget;
+        
         public EcsEntity entity;
+
+        #region Properties
+
+        public GameObject CameraTarget => _cameraTarget;
+
+        #endregion
+
+        #endregion
 
         public void Shoot()
         {

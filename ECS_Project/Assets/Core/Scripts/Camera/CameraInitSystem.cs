@@ -6,6 +6,7 @@ namespace Core.Scripts.Camera
     public class CameraInitSystem : IEcsInitSystem
     {
         private EcsWorld ecsWorld;
+        private EcsFilter<Player.PlayerInit.Player> filter;
         
         public void Init()
         {
@@ -15,7 +16,18 @@ namespace Core.Scripts.Camera
 
                 ref var cameraComponent = ref cameraEntity.Get<Camera>();
                 
-                cameraComponent.cameraTransform = cameraView.CameraTransform;
+                cameraComponent.CameraVirtualCamera = cameraView.CameraVirtualCamera;
+                cameraComponent.CameraTransform = cameraView.CameraTransform;
+                cameraComponent.BottomClamp = cameraView.BottomClamp;
+                cameraComponent.TopClamp = cameraView.TopClamp;
+                cameraComponent.CameraAngleOverride = cameraView.CameraAngleOverride;
+                
+                foreach (var i in filter)
+                {
+                    ref var player = ref filter.Get1(i);
+                    cameraComponent.CameraVirtualCamera.Follow = player.CameraTarget.transform;
+                    cameraComponent.CameraTarget = player.CameraTarget;
+                }
             }
         }
     }

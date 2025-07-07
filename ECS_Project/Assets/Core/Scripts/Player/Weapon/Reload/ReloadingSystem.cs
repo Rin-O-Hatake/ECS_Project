@@ -35,7 +35,7 @@ namespace Experimentation.ECS_Project.Scripts.Player.Weapon.Reload
 
                 ref var entity = ref reloadingFinishedFilter.GetEntity(i);
                 
-                if (weapon.owner.Has<PlayerInit.Player>())
+                if (weapon.owner.Has<Core.Scripts.Player.PlayerInit.Player>())
                 {
                     ui.gameScreen.SetCurrentInMagazine(weapon.currentInMagazine);
                 }

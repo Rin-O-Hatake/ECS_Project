@@ -21,7 +21,7 @@ namespace Experimentation.ECS_Project.Scripts.Player.Weapon.Base
                 {
                     weapon.currentInMagazine--;
                     
-                    if (weapon.owner.Has<PlayerInit.Player>())
+                    if (weapon.owner.Has<Core.Scripts.Player.PlayerInit.Player>())
                     {
                         ui.gameScreen.SetCurrentInMagazine(weapon.currentInMagazine);
                     }
