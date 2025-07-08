@@ -1,12 +1,14 @@
+using Cinemachine;
+using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace Experimentation.ECS_Project.Scripts.AllData.SceneData
+namespace Core.Scripts.AllData.SceneData
 {
     public class WeaponSettings : MonoBehaviour
     {
         #region Fields
 
+        [Title("Weapon Settings")]
         [SerializeField] private GameObject _projectilePrefab;
         [SerializeField] private  Transform _projectileSocket;
         [SerializeField] private  float _projectileSpeed;
@@ -15,6 +17,11 @@ namespace Experimentation.ECS_Project.Scripts.AllData.SceneData
         [SerializeField] private  int _currentInMagazine;
         [SerializeField] private  int _maxInMagazine;
         [SerializeField] private  int _totalAmmo;
+        
+        [Title("Weapon Settings")]
+        [SerializeField] private CinemachineImpulseSource _cameraImpulseListener;
+        [SerializeField] private float _recoilForce = 1f;
+        [SerializeField] private Vector3 _recoilDirection = Vector3.back;
 
         #region Properties
 
@@ -26,6 +33,9 @@ namespace Experimentation.ECS_Project.Scripts.AllData.SceneData
         public int CurrentInMagazine => _currentInMagazine;
         public int MaxInMagazine => _maxInMagazine;
         public int TotalAmmo => _totalAmmo;
+        public CinemachineImpulseSource CameraImpulseListener => _cameraImpulseListener;
+        public float RecoilForce => _recoilForce;
+        public Vector3 RecoilDirection => _recoilDirection;
 
         #endregion
 

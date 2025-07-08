@@ -1,12 +1,15 @@
+using Core.Scripts.Player.PlayerAnimation;
+using Core.Scripts.Player.Weapon.Reload;
+using Experimentation.ECS_Project.Scripts.Player.Weapon;
 using Experimentation.ECS_Project.Scripts.Player.Weapon.Reload;
 using Leopotam.Ecs;
 
-namespace Experimentation.ECS_Project.Scripts.Player.Weapon.Base
+namespace Core.Scripts.Player.Weapon.Base
 {
     public class WeaponShootSystem : IEcsRunSystem
     {
         private EcsFilter<Weapon, Shoot> filter;
-        private UI.UI ui;
+        private Experimentation.ECS_Project.Scripts.UI.UI ui;
     
         public void Run()
         {
@@ -16,6 +19,7 @@ namespace Experimentation.ECS_Project.Scripts.Player.Weapon.Base
 
                 ref var entity = ref filter.GetEntity(i);
                 entity.Del<Shoot>();
+                entity.Get<ImpulseShootMarker>();
             
                 if (weapon.currentInMagazine > 0)
                 {

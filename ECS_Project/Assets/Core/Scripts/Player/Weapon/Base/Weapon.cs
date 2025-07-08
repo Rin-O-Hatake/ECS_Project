@@ -1,7 +1,8 @@
+using Cinemachine;
 using Leopotam.Ecs;
 using UnityEngine;
 
-namespace Experimentation.ECS_Project.Scripts.Player.Weapon.Base
+namespace Core.Scripts.Player.Weapon.Base
 {
     public struct Weapon
     {

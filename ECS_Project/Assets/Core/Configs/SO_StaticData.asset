@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerPrefab: {fileID: 7324311353319300534, guid: 9e0bc0c50c2a9874abdd0d1189c632d6,
     type: 3}
-  _playerSpeed: 15
+  _playerSpeed: 8
   _health: 100
   _analogMovement: 0
   _speedChangeRate: 10

@@ -1,4 +1,5 @@
 using Cinemachine;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Core.Scripts.Camera
@@ -7,6 +8,7 @@ namespace Core.Scripts.Camera
     {
         #region Fields
 
+        [Title("Camera View")]
         [SerializeField] private Transform _cameraTransform;
         [SerializeField] private CinemachineVirtualCamera _cameraVirtualCamera;
         [SerializeField, Range(-150, 0)] private float _bottomClamp = -30.0f;

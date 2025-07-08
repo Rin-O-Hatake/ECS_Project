@@ -1,7 +1,6 @@
 using Leopotam.Ecs;
-using UnityEngine;
 
-namespace Experimentation.ECS_Project.Scripts.Player.Weapon
+namespace Core.Scripts.Player.Weapon.Base
 {
     public struct Shoot : IEcsIgnoreInFilter
     {

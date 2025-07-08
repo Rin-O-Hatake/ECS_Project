@@ -1,6 +1,5 @@
-using Core.Scripts.AllData.StaticData;
+using Core.Scripts.AllData.RunTimeData;
 using Core.Scripts.Player.PlayerInput;
-using Experimentation.ECS_Project.Scripts.AllData.SceneData;
 using Leopotam.Ecs;
 using UnityEngine;
 
@@ -10,8 +9,7 @@ namespace Core.Scripts.Camera
     {
         private EcsFilter<Player.PlayerInit.Player, PlayerInputData> filter;
         private EcsFilter<Camera> cameraFilter;
-        private SceneData sceneData;
-        private StaticData staticData;
+        private RuntimeData _runtimeData;
         
         private const float _threshold = 0.01f;
         
@@ -20,6 +18,11 @@ namespace Core.Scripts.Camera
 
         public void Run()
         {
+            if (_runtimeData.IsPaused)
+            {
+                return; 
+            }
+            
             foreach (var i in filter)
             {
                 foreach (var j in cameraFilter)

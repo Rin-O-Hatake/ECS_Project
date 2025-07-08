@@ -2,7 +2,7 @@ using Core.Scripts.Player.PlayerInput;
 using Leopotam.Ecs;
 using UnityEngine;
 
-namespace Core.Scripts.Player.PlayerMove
+namespace Core.Scripts.Player.PlayerMovePlayerInitSystem
 {
     public class PlayerMoveSystem : IEcsRunSystem
     {
@@ -33,67 +33,44 @@ namespace Core.Scripts.Player.PlayerMove
                     targetSpeed = 0.0f;
                 }
 
-            float currentHorizontalSpeed = new Vector3(player.CharacterController.velocity.x, 0.0f, player.CharacterController.velocity.z).magnitude;
+                var currentHorizontalSpeed = new Vector3(player.CharacterController.velocity.x, 0.0f, player.CharacterController.velocity.z).magnitude;
 
-            float speedOffset = 0.1f;
-            float inputMagnitude = player.AnalogMovement ? input.moveInput.magnitude : 1f;
+                float speedOffset = 0.1f;
+                float inputMagnitude = player.AnalogMovement ? input.moveInput.magnitude : 1f;
 
-            if (currentHorizontalSpeed < targetSpeed - speedOffset ||
-                currentHorizontalSpeed > targetSpeed + speedOffset)
-            {
-                _speed = Mathf.Lerp(currentHorizontalSpeed, targetSpeed * inputMagnitude,
-                    Time.deltaTime * player.SpeedChangeRate);
-
-                _speed = Mathf.Round(_speed * 1000f) / 1000f;
-            }
-            else
-            {
-                _speed = targetSpeed;
-            }
-
-            Vector3 inputDirection = new Vector3(input.moveInput.x, 0.0f, input.moveInput.y).normalized;
-
-            foreach (var j in filterCamera)
-            {
-                ref var camera = ref filterCamera.Get1(j);
-                if (input.moveInput != Vector2.zero)
+                if (currentHorizontalSpeed < targetSpeed - speedOffset ||
+                    currentHorizontalSpeed > targetSpeed + speedOffset)
                 {
-                    _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg +
-                                      camera.CameraTransform.eulerAngles.y;
-                    float rotation = Mathf.SmoothDampAngle(player.playerTransform.eulerAngles.y, _targetRotation, ref _rotationVelocity,
-                        player.RotationSmoothTime);
+                    _speed = Mathf.Lerp(currentHorizontalSpeed, targetSpeed * inputMagnitude,
+                        Time.deltaTime * player.SpeedChangeRate);
 
-                    player.playerTransform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
-                }   
-            }
+                    _speed = Mathf.Round(_speed * 1000f) / 1000f;
+                }
+                else
+                {
+                    _speed = targetSpeed;
+                }
+
+                Vector3 inputDirection = new Vector3(input.moveInput.x, 0.0f, input.moveInput.y).normalized;
+
+                foreach (var j in filterCamera)
+                {
+                    ref var camera = ref filterCamera.Get1(j);
+                    if (input.moveInput != Vector2.zero)
+                    {
+                        _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg +
+                                          camera.CameraTransform.eulerAngles.y;
+                        float rotation = Mathf.SmoothDampAngle(player.playerTransform.eulerAngles.y, _targetRotation, ref _rotationVelocity,
+                            player.RotationSmoothTime);
+
+                        player.playerTransform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+                    }   
+                }
 
 
-            Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
+                Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
 
-            player.CharacterController.Move(targetDirection.normalized * (_speed * Time.deltaTime));
-
-                // input.moveInput = Quaternion.Euler(0f, input.CameraRotationX, 0f) * input.moveInput;
-                //
-                // Vector3 movement = input.moveInput * player.playerSpeed * Time.deltaTime;
-                // player.CharacterController.Move(movement);
-                //
-                // if (input.moveInput.magnitude > 0.1f)
-                // {
-                //     Quaternion targetRotation = Quaternion.LookRotation(input.moveInput);
-                //     player.playerTransform.rotation = Quaternion.RotateTowards(player.playerTransform.rotation, targetRotation, player.rotationSpeed * Time.deltaTime);
-                // }
-                
-                // Vector3 direction = (Vector3.forward * input.moveInput.z + Vector3.right * input.moveInput.x).normalized;
-                // if (player.CharacterController != null)
-                // {
-                //     player.CharacterController.Move(direction * player.playerSpeed * Time.deltaTime);
-                // }
-                //
-                // if (direction != Vector3.zero)
-                // {
-                //     Quaternion targetRotation = Quaternion.LookRotation(direction);
-                //     player.playerTransform.rotation = Quaternion.RotateTowards(player.playerTransform.rotation, targetRotation, player.rotationSpeed * Time.deltaTime);
-                // }
+                player.CharacterController.Move(targetDirection.normalized * (_speed * Time.deltaTime));
             }
         }
     }

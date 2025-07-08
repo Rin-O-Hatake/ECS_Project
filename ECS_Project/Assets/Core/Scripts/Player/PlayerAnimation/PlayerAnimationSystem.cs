@@ -2,7 +2,7 @@ using Core.Scripts.Player.PlayerInput;
 using Leopotam.Ecs;
 using UnityEngine;
 
-namespace Experimentation.ECS_Project.Scripts.Player.PlayerAnimation
+namespace Core.Scripts.Player.PlayerAnimation
 {
     public class PlayerAnimationSystem : IEcsRunSystem
     {
@@ -15,10 +15,8 @@ namespace Experimentation.ECS_Project.Scripts.Player.PlayerAnimation
                 ref var player = ref filter.Get1(i);
                 ref var input = ref filter.Get2(i);
             
-                float vertical = Vector3.Dot(input.moveInput.normalized, player.playerTransform.forward);
-                float horizontal = Vector3.Dot(input.moveInput.normalized, player.playerTransform.right);
-                player.playerAnimator.SetFloat("Horizontal", horizontal, 0.1f, Time.deltaTime);
-                player.playerAnimator.SetFloat("Vertical", vertical, 0.1f, Time.deltaTime);
+                player.playerAnimator.SetFloat("Horizontal", input.moveInput.x, 0.1f, Time.deltaTime);
+                player.playerAnimator.SetFloat("Vertical", input.moveInput.y, 0.1f, Time.deltaTime);
                 player.playerAnimator.SetBool("Shooting", input.shootInput);
             }
         }

@@ -5,7 +5,7 @@ namespace Experimentation.ECS_Project.Scripts.Player.Weapon.Reload
     public class ReloadingSystem : IEcsRunSystem
     {
         private EcsFilter<TryReload, AnimatorRef>.Exclude<Reloading> tryReloadFilter;
-        private EcsFilter<Base.Weapon, ReloadingFinished> reloadingFinishedFilter;
+        private EcsFilter<Core.Scripts.Player.Weapon.Base.Weapon, ReloadingFinished> reloadingFinishedFilter;
         private UI.UI ui;
         
         public void Run()

@@ -7,7 +7,7 @@ namespace Core.Scripts.Player.Weapon.Reload
 {
     public class SpawnProjectileSystem : IEcsRunSystem
     {
-        private EcsFilter<Experimentation.ECS_Project.Scripts.Player.Weapon.Base.Weapon, SpawnProjectile> filter;
+        private EcsFilter<Base.Weapon, SpawnProjectile> filter;
         private EcsWorld ecsWorld;
     
         public void Run()

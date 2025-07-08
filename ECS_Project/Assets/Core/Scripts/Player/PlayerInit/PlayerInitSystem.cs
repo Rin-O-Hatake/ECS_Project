@@ -1,5 +1,7 @@
 using Core.Scripts.AllData.RunTimeData;
+using Core.Scripts.AllData.SceneData;
 using Core.Scripts.AllData.StaticData;
+using Core.Scripts.Camera;
 using Core.Scripts.Damage;
 using Core.Scripts.Player.PlayerInput;
 using Core.Scripts.Player.Weapon.Base;
@@ -57,8 +59,24 @@ namespace Core.Scripts.Player.PlayerInit
 
             var weaponEntity = _ecsWorld.NewEntity();
             var weaponView = playerGO.GetComponentInChildren<WeaponSettings>();
-            ref var weapon = ref weaponEntity.Get<Experimentation.ECS_Project.Scripts.Player.Weapon.Base.Weapon>();
+            ref var weapon = ref weaponEntity.Get<Weapon.Base.Weapon>();
+            ref var weaponEffects = ref weaponEntity.Get<WeaponEffects>();
+            
             weapon.owner = playerEntity;
+
+            InitWeapon(ref weapon, weaponView);
+            InitWeaponEffects(ref weaponEffects, weaponView);
+            
+            hasWeapon.weapon = weaponEntity;
+            
+            #endregion
+            
+            ui.gameScreen.SetCurrentInMagazine(weapon.currentInMagazine);
+            ui.gameScreen.SetTotalAmmo(weapon.totalAmmo);
+        }
+
+        private void InitWeapon(ref Weapon.Base.Weapon weapon, WeaponSettings weaponView)
+        {
             weapon.projectilePrefab = weaponView.ProjectilePrefab;
             weapon.projectileRadius = weaponView.ProjectileRadius;
             weapon.projectileSocket = weaponView.ProjectileSocket;
@@ -67,13 +85,13 @@ namespace Core.Scripts.Player.PlayerInit
             weapon.weaponDamage = weaponView.WeaponDamage;
             weapon.currentInMagazine = weaponView.CurrentInMagazine;
             weapon.maxInMagazine = weaponView.MaxInMagazine;
-
-            hasWeapon.weapon = weaponEntity;
-
-            #endregion
-            
-            ui.gameScreen.SetCurrentInMagazine(weapon.currentInMagazine);
-            ui.gameScreen.SetTotalAmmo(weapon.totalAmmo);
+        }
+        
+        private void InitWeaponEffects(ref WeaponEffects weaponEffectsEntity, WeaponSettings weaponView)
+        {
+            weaponEffectsEntity.ImpulseListener = weaponView.CameraImpulseListener;
+            weaponEffectsEntity.RecoilForce = weaponView.RecoilForce;
+            weaponEffectsEntity.RecoilDirection = weaponView.RecoilDirection;
         }
     }
 }
