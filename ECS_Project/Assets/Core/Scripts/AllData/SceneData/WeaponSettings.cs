@@ -17,6 +17,9 @@ namespace Core.Scripts.AllData.SceneData
         [SerializeField] private  int _currentInMagazine;
         [SerializeField] private  int _maxInMagazine;
         [SerializeField] private  int _totalAmmo;
+        [SerializeField] private Transform _targetShot;
+        [SerializeField] private float _projectileLifetime;
+        [SerializeField] private int _rangeShot;
         
         [Title("Weapon Settings")]
         [SerializeField] private CinemachineImpulseSource _cameraImpulseListener;
@@ -33,6 +36,10 @@ namespace Core.Scripts.AllData.SceneData
         public int CurrentInMagazine => _currentInMagazine;
         public int MaxInMagazine => _maxInMagazine;
         public int TotalAmmo => _totalAmmo;
+        public Transform TargetShot => _targetShot;
+        public float ProjectileLifetime => _projectileLifetime;
+        public int RangeShot => _rangeShot;
+        
         public CinemachineImpulseSource CameraImpulseListener => _cameraImpulseListener;
         public float RecoilForce => _recoilForce;
         public Vector3 RecoilDirection => _recoilDirection;

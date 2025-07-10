@@ -1,6 +1,4 @@
-using UnityEngine;
-
-namespace Experimentation.ECS_Project.Scripts.Player.Weapon
+namespace Core.Scripts.Player.Weapon.Reload
 {
     public struct ReloadingFinished
     {

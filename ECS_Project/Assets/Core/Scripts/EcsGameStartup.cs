@@ -7,14 +7,13 @@ using Core.Scripts.Enemy;
 using Core.Scripts.Player.PlayerAnimation;
 using Core.Scripts.Player.PlayerInit;
 using Core.Scripts.Player.PlayerInput;
-using Core.Scripts.Player.PlayerMovePlayerInitSystem;
+using Core.Scripts.Player.PlayerMove;
 using Core.Scripts.Player.Weapon.Base;
 using Core.Scripts.Player.Weapon.Bullet;
 using Core.Scripts.Player.Weapon.Reload;
 using Core.Scripts.Player.Weapon.Shoot;
 using Core.Scripts.UI.Pause;
 using Experimentation.ECS_Project.Scripts.AllData.SceneData;
-using Experimentation.ECS_Project.Scripts.Player.Weapon.Reload;
 using Leopotam.Ecs;
 using UnityEngine;
 
@@ -152,6 +151,8 @@ namespace Core.Scripts
                 .Add(new ProjectileHitSystem())
                 .Add(new ReloadingSystem())
                 .Add(new ShootEffectsSystem())
+                .Add(new DestroyerProjectileSystem())
+                .Add(new WeaponRotationSystem())
                 .Inject(configuration)
                 .Inject(ui);
         }

@@ -1,4 +1,4 @@
-namespace Experimentation.ECS_Project.Scripts.Player.Weapon.Reload
+namespace Core.Scripts.Player.Weapon.Reload
 {
     public struct TryReload
     {

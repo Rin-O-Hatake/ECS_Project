@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Experimentation.ECS_Project.Scripts.Player.Weapon
+namespace Core.Scripts.Player.Weapon.Bullet
 {
     public struct ProjectileHit
     {

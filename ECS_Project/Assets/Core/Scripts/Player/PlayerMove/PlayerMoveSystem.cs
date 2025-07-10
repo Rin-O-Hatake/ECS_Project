@@ -2,7 +2,7 @@ using Core.Scripts.Player.PlayerInput;
 using Leopotam.Ecs;
 using UnityEngine;
 
-namespace Core.Scripts.Player.PlayerMovePlayerInitSystem
+namespace Core.Scripts.Player.PlayerMove
 {
     public class PlayerMoveSystem : IEcsRunSystem
     {

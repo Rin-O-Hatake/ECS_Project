@@ -6,7 +6,7 @@ namespace Core.Scripts.Player.Weapon.Bullet
 {
     public class ProjectileMoveSystem : IEcsRunSystem
     {
-        private EcsFilter<Projectile> filter;
+        private EcsFilter<Projectile>.Exclude<ProjectileLifetimeMarker> filter;
     
         public void Run()
         {
@@ -29,6 +29,12 @@ namespace Core.Scripts.Player.Weapon.Bullet
                 }
 
                 projectile.previousPos = projectile.projectileGO.transform.position;
+                projectile.ProjectileLifetime -= Time.deltaTime;
+                if (projectile.ProjectileLifetime <= 0)
+                {
+                    ref var entity = ref filter.GetEntity(i);
+                    entity.Get<ProjectileLifetimeMarker>();
+                }
             }
         }
     }

@@ -1,6 +1,6 @@
+using Core.Scripts.Player.Weapon.Reload;
 using Core.Scripts.UI.Pause;
 using Experimentation.ECS_Project.Scripts.Player.Weapon;
-using Experimentation.ECS_Project.Scripts.Player.Weapon.Reload;
 using Leopotam.Ecs;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -82,6 +82,7 @@ namespace Core.Scripts.Player.PlayerInput
                 {
                     ref var entity = ref filter.GetEntity(i);
                     entity.Get<TryReload>();
+                    Debug.Log("TryReload");
                 }   
             }
         }

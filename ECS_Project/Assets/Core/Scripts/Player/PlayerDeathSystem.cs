@@ -1,5 +1,6 @@
 using Core.Scripts.AllData.RunTimeData;
 using Core.Scripts.Damage;
+using Core.Scripts.Player.Weapon;
 using Experimentation.ECS_Project.Scripts.Enemy;
 using Experimentation.ECS_Project.Scripts.Player.Weapon;
 using Leopotam.Ecs;

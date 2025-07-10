@@ -15,5 +15,8 @@ namespace Core.Scripts.Player.Weapon.Base
         public int currentInMagazine;
         public int maxInMagazine;
         public int totalAmmo;
+        public Transform TargetShot;
+        public float ProjectileLifetime;
+        public int RangeShot;
     }
 }

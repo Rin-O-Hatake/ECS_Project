@@ -1,7 +1,6 @@
 using Core.Scripts.Player.PlayerAnimation;
 using Core.Scripts.Player.Weapon.Reload;
 using Experimentation.ECS_Project.Scripts.Player.Weapon;
-using Experimentation.ECS_Project.Scripts.Player.Weapon.Reload;
 using Leopotam.Ecs;
 
 namespace Core.Scripts.Player.Weapon.Base

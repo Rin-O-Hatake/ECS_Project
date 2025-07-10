@@ -4,6 +4,7 @@ using Core.Scripts.AllData.StaticData;
 using Core.Scripts.Camera;
 using Core.Scripts.Damage;
 using Core.Scripts.Player.PlayerInput;
+using Core.Scripts.Player.Weapon;
 using Core.Scripts.Player.Weapon.Base;
 using Experimentation.ECS_Project.Scripts.AllData.SceneData;
 using Experimentation.ECS_Project.Scripts.Enemy;
@@ -60,6 +61,7 @@ namespace Core.Scripts.Player.PlayerInit
             var weaponEntity = _ecsWorld.NewEntity();
             var weaponView = playerGO.GetComponentInChildren<WeaponSettings>();
             ref var weapon = ref weaponEntity.Get<Weapon.Base.Weapon>();
+            ref var weaponRaycastHit = ref weaponEntity.Get<WeaponRaycastHit>();
             ref var weaponEffects = ref weaponEntity.Get<WeaponEffects>();
             
             weapon.owner = playerEntity;
@@ -85,6 +87,9 @@ namespace Core.Scripts.Player.PlayerInit
             weapon.weaponDamage = weaponView.WeaponDamage;
             weapon.currentInMagazine = weaponView.CurrentInMagazine;
             weapon.maxInMagazine = weaponView.MaxInMagazine;
+            weapon.TargetShot = weaponView.TargetShot;
+            weapon.ProjectileLifetime = weaponView.ProjectileLifetime;
+            weapon.RangeShot = weaponView.RangeShot;
         }
         
         private void InitWeaponEffects(ref WeaponEffects weaponEffectsEntity, WeaponSettings weaponView)

@@ -3,7 +3,6 @@ using Core.Scripts.Enemy;
 using Experimentation.ECS_Project.Scripts.Enemy;
 using Experimentation.ECS_Project.Scripts.Player.Weapon;
 using Leopotam.Ecs;
-using UnityEngine;
 
 namespace Core.Scripts.Player.Weapon.Bullet
 {
@@ -29,8 +28,8 @@ namespace Core.Scripts.Player.Weapon.Bullet
                     }
                 }
 
-                projectile.projectileGO.SetActive(false);
-                filter.GetEntity(i).Destroy();
+                ref var entity = ref filter.GetEntity(i);
+                entity.Get<ProjectileLifetimeMarker>();
             }
         }
     

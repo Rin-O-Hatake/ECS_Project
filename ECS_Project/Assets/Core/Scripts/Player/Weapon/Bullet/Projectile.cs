@@ -11,5 +11,6 @@ namespace Core.Scripts.Player.Weapon.Bullet
         public float speed;
         public Vector3 previousPos;
         public GameObject projectileGO;
+        public float ProjectileLifetime;
     }
 }
