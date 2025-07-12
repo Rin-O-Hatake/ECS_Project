@@ -43,6 +43,7 @@ namespace Core.Scripts.Player.PlayerInit
             player.AnalogMovement = _staticData.AnalogMovement;
             player.SpeedChangeRate = _staticData.SpeedChangeRate;
             player.RotationSmoothTime = _staticData.RotationSmoothTime;
+            player.RotationSpeed = _staticData.RotationSpeed;
             
             healthPlayer.value = _staticData.Health;
             animatorRef.animator = player.playerAnimator;

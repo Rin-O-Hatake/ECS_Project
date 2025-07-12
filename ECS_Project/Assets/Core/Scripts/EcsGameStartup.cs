@@ -93,7 +93,6 @@ namespace Core.Scripts
         {
             _systems
                 .Add(new PlayerInitSystem())
-                .OneFrame<TryReload>()
                 .Add(new PlayerInputSystem())
                 .Add(new PlayerAnimationSystem())
                 .Add(new PlayerDeathSystem())
@@ -145,11 +144,13 @@ namespace Core.Scripts
         private void AddSystemsWeapons()
         {
             _systems
+                .Add(new PlayerRotationShootSystem())
                 .Add(new WeaponShootSystem())
                 .Add(new SpawnProjectileSystem())
                 .Add(new ProjectileMoveSystem())
                 .Add(new ProjectileHitSystem())
                 .Add(new ReloadingSystem())
+                .OneFrame<TryReload>()
                 .Add(new ShootEffectsSystem())
                 .Add(new DestroyerProjectileSystem())
                 .Add(new WeaponRotationSystem())

@@ -82,7 +82,6 @@ namespace Core.Scripts.Player.PlayerInput
                 {
                     ref var entity = ref filter.GetEntity(i);
                     entity.Get<TryReload>();
-                    Debug.Log("TryReload");
                 }   
             }
         }

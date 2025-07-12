@@ -11,5 +11,6 @@ namespace Core.Scripts.Camera
         public float BottomClamp;
         public float TopClamp;
         public float CameraAngleOverride;
+        public float AutoRotationThreshold;
     }
 }

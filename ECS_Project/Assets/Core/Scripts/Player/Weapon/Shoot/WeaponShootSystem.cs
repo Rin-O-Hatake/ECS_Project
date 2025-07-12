@@ -1,13 +1,13 @@
-using Core.Scripts.Player.PlayerAnimation;
+using Core.Scripts.Player.Weapon.Base;
 using Core.Scripts.Player.Weapon.Reload;
-using Experimentation.ECS_Project.Scripts.Player.Weapon;
 using Leopotam.Ecs;
+using UnityEngine;
 
-namespace Core.Scripts.Player.Weapon.Base
+namespace Core.Scripts.Player.Weapon.Shoot
 {
     public class WeaponShootSystem : IEcsRunSystem
     {
-        private EcsFilter<Weapon, Shoot> filter;
+        private EcsFilter<Base.Weapon, Shoot> filter;
         private Experimentation.ECS_Project.Scripts.UI.UI ui;
     
         public void Run()

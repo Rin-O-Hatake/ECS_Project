@@ -1,4 +1,3 @@
-using Experimentation.ECS_Project.Scripts.Player.Weapon;
 using Leopotam.Ecs;
 using UnityEngine;
 
@@ -16,12 +15,11 @@ namespace Core.Scripts.Player.Weapon.Reload
             {
                 ref var animatorRef = ref tryReloadFilter.Get2(i);
 
-                Debug.Log("+1");
 
-                // animatorRef.animator.SetTrigger("Reload");
+                animatorRef.animator.SetTrigger("Reload");
 
                 ref var entity = ref tryReloadFilter.GetEntity(i);
-                // entity.Get<Reloading>();
+                entity.Get<Reloading>();
             }
 
             foreach (var i in reloadingFinishedFilter)

@@ -21,7 +21,6 @@ namespace Core.Scripts.Player.PlayerMove
         {
             foreach (var i in filter)
             {
-                
                 ref var player = ref filter.Get1(i);
                 ref var input = ref filter.Get2(i);
 
@@ -58,19 +57,21 @@ namespace Core.Scripts.Player.PlayerMove
                     ref var camera = ref filterCamera.Get1(j);
                     if (input.moveInput != Vector2.zero)
                     {
-                        _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg +
-                                          camera.CameraTransform.eulerAngles.y;
-                        float rotation = Mathf.SmoothDampAngle(player.playerTransform.eulerAngles.y, _targetRotation, ref _rotationVelocity,
-                            player.RotationSmoothTime);
+                        _targetRotation = camera.CameraTransform.eulerAngles.y;
+
+                        float rotation = Mathf.SmoothDampAngle(
+                            player.playerTransform.eulerAngles.y,
+                            _targetRotation,
+                            ref _rotationVelocity,
+                            player.RotationSmoothTime
+                        );
 
                         player.playerTransform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
                     }   
                 }
 
-
-                Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
-
-                player.CharacterController.Move(targetDirection.normalized * (_speed * Time.deltaTime));
+                Vector3 worldMoveDirection = player.playerTransform.TransformDirection(inputDirection);
+                player.CharacterController.Move(worldMoveDirection * (_speed * Time.deltaTime));
             }
         }
     }

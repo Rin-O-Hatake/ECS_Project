@@ -23,7 +23,7 @@ namespace Core.Scripts.Player.Weapon.Base
 
         public void Shoot()
         {
-            entity.Get<HasWeapon>().weapon.Get<Shoot>();
+            entity.Get<HasWeapon>().weapon.Get<Shoot.Shoot>();
         }
         
         public void Reload()

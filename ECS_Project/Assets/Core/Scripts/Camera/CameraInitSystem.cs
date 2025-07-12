@@ -21,6 +21,7 @@ namespace Core.Scripts.Camera
                 cameraComponent.BottomClamp = cameraView.BottomClamp;
                 cameraComponent.TopClamp = cameraView.TopClamp;
                 cameraComponent.CameraAngleOverride = cameraView.CameraAngleOverride;
+                cameraComponent.AutoRotationThreshold = cameraView.AutoRotationThreshold;
                 
                 foreach (var i in filter)
                 {

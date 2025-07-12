@@ -13,5 +13,6 @@ namespace Core.Scripts.Player.PlayerInit
         public bool AnalogMovement;
         public float SpeedChangeRate;
         public float RotationSmoothTime;
+        public float RotationSpeed;
     }
 }

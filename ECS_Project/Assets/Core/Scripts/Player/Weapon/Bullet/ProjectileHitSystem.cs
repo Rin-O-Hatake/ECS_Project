@@ -18,6 +18,11 @@ namespace Core.Scripts.Player.Weapon.Bullet
                 ref var projectile = ref filter.Get1(i);
                 ref var hit = ref filter.Get2(i);
 
+                if (hit.raycastHit.collider == null)
+                {
+                    return;
+                }
+                
                 if (hit.raycastHit.collider.gameObject.TryGetComponent(out EnemyView enemyView))
                 {
                     if (enemyView.Entity.IsAlive())
